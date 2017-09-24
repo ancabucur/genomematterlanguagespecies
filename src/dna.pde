@@ -1,8 +1,8 @@
-  String HEAD = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/head.obj";
-  String DNA = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/dna.obj";
-  String FILM = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/video/red_close.mp4";
-  String FILM_RETINA = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/video/retina.mp4";
-  String SOUND = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/sound/rec_impro3.wav";
+  String HEAD = "../data/head.obj";
+  String DNA = "../data/dna.obj";
+  String FILM = "../data/video/red_close.mp4";
+  String FILM_RETINA = "../data/video/retina.mp4";
+  String SOUND = "../data/sound/rec_impro3.wav";
   int PROJECTOR = 2;
   Film filmHead;
   Film filmRetina;
@@ -31,10 +31,7 @@
     controls.parent_width = width;
     
     fx = new Postfx(this);
- 
-   
   }
-  // TODO: mapez fiecare configuratie de sectiune pe un buton 1,2,3,4,5
   
   void settings(){
     fullScreen(P3D, PROJECTOR);

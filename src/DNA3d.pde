@@ -79,11 +79,5 @@ class DNA3d extends Obj3d {
         render.drawFaces(mesh);
       }
   }
-  
-    
-  
 
-
-  
-  
 }

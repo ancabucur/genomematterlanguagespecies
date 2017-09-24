@@ -7,6 +7,7 @@ public class Controls extends PApplet{
   ControlP5 cp5;
   Client client;
   int PORT = 4243;
+  String HOST = "127.0.0.1";
   boolean isPlaying = false;
   
   int currentFilm;
@@ -47,7 +48,7 @@ public class Controls extends PApplet{
   {
     super();
     PApplet.runSketch(new String[] {this.getClass().getSimpleName()}, this);
-    client = new Client(this, "127.0.0.1", PORT);
+    client = new Client(this, HOST, PORT);
   }
   
   void setup() {
@@ -700,8 +701,6 @@ public class Controls extends PApplet{
          next();
        }
      }
-
-     
      
   }
 

@@ -1,7 +1,7 @@
 import gohai.glvideo.*;
 
 class Film {
-  String edgesPath = "/home/snisioi/audiovisual/processing-3.3.6/sketchbook/performance/data/video/edges.glsl";
+  String edgesPath = "../data/video/edges.glsl";
   GLMovie movie;
   PShader edges;
   boolean edgesEnabled = false;
