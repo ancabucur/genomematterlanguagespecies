@@ -1,2 +1,3 @@
 # to convert for a Philips dvp2882 dvd player connected to a TV
-ffmpeg -i retina.mp4 -sn -c:a libmp3lame -ar 48000 -ab 128k -ac 2 -c:v libxvid -crf 24 -vtag DIVX -vf scale=640:480 -aspect 4:3 -mbd rd -flags +mv4+aic -trellis 2 -cmp 2 -subcmp 2 -g 30 -vb 1500k output.avi
+ffmpeg -i retina.mp4 -sn -c:a libmp3lame -ar 48000 -ab 128k -ac 2 -c:v libxvid -vtag DIVX -vf scale=640:480 -aspect 4:3 -mbd rd -flags +mv4+aic -trellis 2 -cmp 2 -subcmp 2 -g 30 -vb 1500k output.avi
+#ffmpeg  -i screen1.mp4 -sn -c:a libmp3lame -ar 48000 -ab 128k -ac 2 -c:v libxvid  -vtag DIVX -vf scale=640:480 -aspect 4:3 -mbd rd -flags +mv4+aic -trellis 2 -cmp 2 -subcmp 2 -g 30 -vb 1500k -vf subtitles=sub.srt face4.avi

@@ -7,7 +7,6 @@ public class Controls extends PApplet{
   ControlP5 cp5;
   Client client;
   int PORT = 4243;
-  String HOST = "127.0.0.1";
   boolean isPlaying = false;
   
   int currentFilm;
@@ -43,12 +42,13 @@ public class Controls extends PApplet{
 
   Toggle videoVisibleToggle, objVisibleToggle, barsVisibleToggle, objTransparentToggle, backgroundVisibleToggle, videoEdgesToggle, fxToggle;
   RadioButton radioFilmRadioButton, radioRotateRadioButton, radioObjRadioButton, radioTwistRadioButton;
-
+  Textarea label;
+  
   public Controls ()
   {
     super();
     PApplet.runSketch(new String[] {this.getClass().getSimpleName()}, this);
-    client = new Client(this, HOST, PORT);
+    client = new Client(this, "127.0.0.1", PORT);
   }
   
   void setup() {
@@ -103,7 +103,7 @@ public class Controls extends PApplet{
        
       radioFilmRadioButton = cp5.addRadioButton("radioFilm");
       radioFilmRadioButton.setPosition(330,20)
-         .setSize(40,20)
+         .setSize(20,20)
          .setColorForeground(color(120))
          .setColorActive(color(255))
          .setColorLabel(color(255))
@@ -111,6 +111,7 @@ public class Controls extends PApplet{
          .setSpacingColumn(10)
          .addItem("0", 1)
          .addItem("1", 2)
+         .addItem("2", 3)
          //.addItem("-1", 3)
          ;
          
@@ -222,6 +223,13 @@ public class Controls extends PApplet{
        .setRange(3, 16)
        .setValue(16)
        ;       
+       
+     label = cp5.addTextarea("Current Section: 0");
+     label.setColor(soundColors)
+       .setPosition(10, 290)
+       .setSize(200, 20)
+       .setValue(0)
+       ;              
        
     cp5.end();
 
@@ -363,17 +371,26 @@ public class Controls extends PApplet{
     videoEdgesToggle.setValue(false);
     videoEdges = false;
     
+    radioFilmRadioButton.deactivateAll();
+    radioObjRadioButton.deactivateAll();
+    
+    radioRotateRadioButton.activate(1);
     radioRotateRadioButton.setValue(0);
     radioRotate(0);
     
     barsVisibleToggle.setValue(true);
     barsVisible = true;
   
+    radioFilmRadioButton.deactivateAll();
+    radioObjRadioButton.deactivateAll();
+  
     cp5.getController("noiseAmount").setValue(0);
     noiseAmount = 0;
     
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
+    
+    label.setText("Current Section: 1");
   }
   
   // voi cei ce intrati aici
@@ -388,6 +405,7 @@ public class Controls extends PApplet{
     videoEdgesToggle.setValue(false);
     videoEdges = false;
     
+    radioRotateRadioButton.activate(1);
     radioRotateRadioButton.setValue(0);
     radioRotate(0);
     
@@ -400,14 +418,19 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(true);
     barsVisible = true;
     
+    radioObjRadioButton.activate(0);
     radioObjRadioButton.setValue(1);
     radioObj(1);
+    
+    radioFilmRadioButton.deactivateAll();
   
     cp5.getController("noiseAmount").setValue(0);
     noiseAmount = 0;
 
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
+    
+    label.setText("Current Section: 2");
   }
   
   // dna talk
@@ -425,6 +448,7 @@ public class Controls extends PApplet{
     objTransparentToggle.setValue(false);
     objTransparent = false;
     
+    radioRotateRadioButton.activate(0);
     radioRotateRadioButton.setValue(-1);
     radioRotate(-1);
     
@@ -434,15 +458,19 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(false);
     barsVisible = false;
     
+    radioObjRadioButton.activate(1);
     radioObjRadioButton.setValue(2); 
     radioObj(2);
-
+    
+    radioFilmRadioButton.deactivateAll();
+    
     cp5.getController("noiseAmount").setValue(0);
     noiseAmount = 0;
 
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
 
+    label.setText("Current Section: 3");
   }
   
   // text fain / fapt de 99
@@ -459,12 +487,14 @@ public class Controls extends PApplet{
     fxToggle.setValue(false);
     fx = false;
     
+    radioFilmRadioButton.activate(0);
     radioFilmRadioButton.setValue(1);
     radioFilm(1);
     
     objTransparentToggle.setValue(false);
     objTransparent = false;
     
+    radioRotateRadioButton.activate(1);
     radioRotateRadioButton.setValue(0);
     radioRotate(0);
     
@@ -474,6 +504,7 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(false);
     barsVisible = false;
     
+    radioObjRadioButton.activate(0);
     radioObjRadioButton.setValue(1); 
     radioObj(1);
     objHead.reset();
@@ -484,6 +515,7 @@ public class Controls extends PApplet{
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
 
+    label.setText("Current Section: 4");
   }
   
   // cambia si anatait / sintetice masini sociale / 
@@ -492,6 +524,7 @@ public class Controls extends PApplet{
     videoVisibleToggle.setValue(true);
     videoVisible = true;
     
+    radioFilmRadioButton.activate(1);
     radioFilmRadioButton.setValue(2);
     radioFilm(2);
     
@@ -504,6 +537,7 @@ public class Controls extends PApplet{
     objTransparentToggle.setValue(true);
     objTransparent = true;
     
+    radioRotateRadioButton.activate(2);
     radioRotateRadioButton.setValue(1);
     radioRotate(1);
     
@@ -513,6 +547,7 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(false);
     barsVisible = false;
     
+    radioObjRadioButton.activate(1);
     radioObjRadioButton.setValue(1);
     radioObj(1);
 
@@ -521,7 +556,8 @@ public class Controls extends PApplet{
 
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
-
+    
+    label.setText("Current Section: 5");
   }
   
   //esperanto noise
@@ -532,6 +568,7 @@ public class Controls extends PApplet{
     filmHead.edgesEnabled = true;
     filmHead.disableEdges();
     
+    radioFilmRadioButton.activate(0);
     radioFilmRadioButton.setValue(1);
     radioFilm(1);
     
@@ -544,6 +581,7 @@ public class Controls extends PApplet{
     objTransparentToggle.setValue(false);
     objTransparent = false;
     
+    radioRotateRadioButton.activate(1);
     radioRotateRadioButton.setValue(0);
     radioRotate(0);
     
@@ -553,11 +591,11 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(false);
     barsVisible = false;
     
+    radioObjRadioButton.activate(0);
     radioObjRadioButton.setValue(1);
     radioObj(1);
     
     objHead.reset();
-  
     
     cp5.getController("noiseAmount").setValue(0);
     noiseAmount = 0;
@@ -565,6 +603,7 @@ public class Controls extends PApplet{
     backgroundVisibleToggle.setValue(true);
     backgroundVisible = true;
   
+    label.setText("Current Section: 6");
   }
   
   // uniti-va
@@ -582,6 +621,7 @@ public class Controls extends PApplet{
     objTransparentToggle.setValue(true);
     objTransparent = true;
     
+    radioRotateRadioButton.activate(1);
     radioRotateRadioButton.setValue(0);
     radioRotate(0);
     
@@ -591,16 +631,61 @@ public class Controls extends PApplet{
     barsVisibleToggle.setValue(true);
     barsVisible = true;
     
+    radioObjRadioButton.activate(0);
     radioObjRadioButton.setValue(1);
-    radioObj(1);  
+    radioObj(1);
+    
+    radioFilmRadioButton.deactivateAll();
+    radioRotateRadioButton.deactivateAll();
 
     cp5.getController("noiseAmount").setValue(0);
     noiseAmount = 0;
   
     backgroundVisibleToggle.setValue(true);
-    backgroundVisible = true;
-
+    backgroundVisible = true; 
     
+    label.setText("Current Section: 7");
+  }
+  
+  // face talking
+  void section8()
+  {
+    videoVisibleToggle.setValue(true);
+    videoVisible = true;
+    
+    fxToggle.setValue(false);
+    fx = false;
+    
+    videoEdgesToggle.setValue(false);
+    videoEdges = false;
+    
+    objTransparentToggle.setValue(true);
+    objTransparent = true;
+    
+    radioRotateRadioButton.activate(1);
+    radioRotateRadioButton.setValue(0);
+    radioRotate(0);
+    
+    objVisibleToggle.setValue(false);
+    objVisible = false;
+    
+    barsVisibleToggle.setValue(true);
+    barsVisible = true;
+    
+    radioObjRadioButton.deactivateAll();
+    radioRotateRadioButton.deactivateAll();
+    
+    radioFilmRadioButton.activate(2);
+    radioFilmRadioButton.setValue(3);
+    radioFilm(3);
+
+    cp5.getController("noiseAmount").setValue(0);
+    noiseAmount = 0;
+  
+    backgroundVisibleToggle.setValue(true);
+    backgroundVisible = true; 
+    
+    label.setText("Current Section: Done!");
   }
   
   void next(){
@@ -653,6 +738,10 @@ public class Controls extends PApplet{
         section7();
         next();
      }
+     if (key == '8')
+     {
+        section8();
+     }
      if (key == 'l')
      {
       println("Play");
@@ -701,6 +790,8 @@ public class Controls extends PApplet{
          next();
        }
      }
+
+     
      
   }
 

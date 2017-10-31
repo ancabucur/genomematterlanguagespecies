@@ -10,7 +10,7 @@ class Obj3d {
   WB_Render3D render;
   HEM_Twist modifier;
   WB_Line L;
-  float current_scale = 16;
+  float current_scale = 12;
   boolean enableNoise = true;
   boolean init = false;
   boolean isHidden = true;
@@ -129,7 +129,7 @@ class Obj3d {
         createMesh(this.path);
         if (this.path.contains("head.obj"))
         { 
-          this.scale(18);
+          this.scale(12);
           global_x_pos = (width-40)/2;
           global_y_pos = height/2;
       

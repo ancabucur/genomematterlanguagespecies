@@ -2,11 +2,17 @@
   String DNA = "../data/dna.obj";
   String FILM = "../data/video/red_close.mp4";
   String FILM_RETINA = "../data/video/retina.mp4";
+  String FILM_CODE = "../data/video/code_hd.mp4";
+
   String SOUND = "../data/sound/rec_impro3.wav";
+  String SOUND_FACE = "../data/sound/face.wav";
+
   int PROJECTOR = 2;
   Film filmHead;
   Film filmRetina;
+  Film filmCode;
   Sound sound;
+  SimpleSound filmCodeMusic;
   
   Obj3d objHead;
   Obj3d objDNA;
@@ -17,10 +23,12 @@
   Controls controls;
  
   void setup() {
-    sound = new Sound(this);
+    sound = new Sound(this);    
+    filmCodeMusic = new SimpleSound(this, SOUND_FACE);
     
     filmHead = new Film(this);
     filmRetina = new Film(this, FILM_RETINA);
+    filmCode = new Film(this, FILM_CODE);
     
     objHead = new Obj3d(this);
     objDNA = new Obj3d(this, DNA);
@@ -31,7 +39,10 @@
     controls.parent_width = width;
     
     fx = new Postfx(this);
+ 
+   
   }
+  // TODO: mapez fiecare configuratie de sectiune pe un buton 1,2,3,4,5
   
   void settings(){
     fullScreen(P3D, PROJECTOR);
@@ -113,8 +124,7 @@
       sound.updateDelay(0, 0);
       sound.updateBitCrush(16);
     }
-    sound.update();
-    
+    sound.update();    
   }
 
   void draw() {
@@ -133,10 +143,18 @@
           filmRetina.play();
           filmRetina.update(controls.videoEdges);
         }
-       }
+        else if (controls.currentFilm == 3)
+        {
+          filmCode.play();
+          filmCode.update(controls.videoEdges);
+          sound.changeSound(SOUND_FACE);
+          //filmCodeMusic.triggerOnce();
+        }
+      }
       else 
       {
-        filmRetina.pause();    
+        filmRetina.pause();  
+        filmCode.pause();
       }
       
       

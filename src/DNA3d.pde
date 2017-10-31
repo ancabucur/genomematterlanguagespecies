@@ -78,6 +78,5 @@ class DNA3d extends Obj3d {
         render.drawEdges(mesh);
         render.drawFaces(mesh);
       }
-  }
-
+  } 
 }
