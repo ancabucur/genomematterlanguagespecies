@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+    gmls:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        volumes:
+            - .:/gmls
+        tty: true
